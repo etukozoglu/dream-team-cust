@@ -16,7 +16,7 @@ form{
     background-color: rgb(220, 230, 245);
     padding: 30px;
     margin: auto;
-    grid-template-columns: 49% 25% 25%;
+    grid-template-columns: 49% 20% 30%;
     grid-template-rows: 13% 13% 13% 13% 13% 20% 13%;
     grid-template-areas: 
         "soName     soSize  soDev"
@@ -78,21 +78,15 @@ form{
       background-color: blue;
       color: white;
 }
-
-/* fieldset{
-    border: none;
-    padding: 20px 30px;
-    border-bottom: solid 2px #004C4C;
-} */
-
-/* label.form-check-label{
+#devNumber{
+    width: 80%;
+}
+#size, #devNumber{
+    margin-top: 1.4px;
     width: 100%;
-    margin-bottom: 10px;
-} */
-/* .custom_width{
-    width: 60%;
-} */
-/* input{
-    width: 10%;
-} */
+    border: none;
+    height: 2.3rem;
+    border-radius: 7px;
+}
+
 
