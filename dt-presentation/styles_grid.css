@@ -1,0 +1,98 @@
+html{
+    padding : 0;
+    margin: 0;
+    font-size: large;
+}
+/* body{
+    display: flex;
+} */
+h4, p{
+    text-align: center;
+}
+
+form{
+    display: grid;
+    width: 60%;
+    background-color: rgb(220, 230, 245);
+    padding: 30px;
+    margin: auto;
+    grid-template-columns: 49% 25% 25%;
+    grid-template-rows: 13% 13% 13% 13% 13% 20% 13%;
+    grid-template-areas: 
+        "soName     soSize  soDev"
+        "firstName  lastName lastName"
+        "role       role     role"
+        "email      email     email"
+        "phone      phone     phone"
+        "msg        msg    msg"
+        "send      send      send";
+        gap: 10px;
+}
+
+.soName{
+    grid-area: soName;
+      background-color: rgb(220, 230, 245);
+}
+  
+.soSize{
+    grid-area: soSize;
+      background-color: rgb(220, 230, 245);
+}
+.soDev{
+    grid-area: soDev;
+      background-color: rgb(220, 230, 245);
+}
+
+.firstName{
+    grid-area: firstName;
+      background-color: rgb(220, 230, 245);
+}
+  
+.lastName{
+    grid-area: lastName;
+      background-color: rgb(220, 230, 245);
+}
+.role{
+    grid-area: role;
+      background-color: rgb(220, 230, 245);
+}
+.email{
+    grid-area: email;
+      background-color: rgb(220, 230, 245);
+}
+.phone{
+    grid-area: phone;
+      background-color: rgb(220, 230, 245);
+}
+.msg{
+    grid-area: msg;
+      background-color: rgb(220, 230, 245);
+}
+.send{
+    grid-area: send;
+      background-color: rgb(220, 230, 245);
+      height: 40%;
+      width: 30%;
+      margin: auto;
+      margin-top: 0;
+      background-color: blue;
+      color: white;
+}
+
+/* fieldset{
+    border: none;
+    padding: 20px 30px;
+    border-bottom: solid 2px #004C4C;
+} */
+
+/* label.form-check-label{
+    width: 100%;
+    margin-bottom: 10px;
+} */
+/* .custom_width{
+    width: 60%;
+} */
+/* input{
+    width: 10%;
+} */
+
