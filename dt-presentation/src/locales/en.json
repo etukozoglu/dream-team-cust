@@ -1,0 +1,12 @@
+{
+    "first_name": "First name",
+    "last_name": "Last name",
+    "company_name": "Company name",
+    "company_size": "Company size",
+    "email": "Email",
+    "phone_number": "Phone number",
+    "number_of_developers": "Number of developers",
+    "role": "Role in the company",
+    "message": "Message"
+  }
+  
