@@ -1,8 +1,8 @@
 <template>
-  <!-- <div id="app"> -->
+  <div id="app">
     <Header />
     <CustomerForm />
-  <!-- </div> -->
+  </div>
 </template>
 
 <script>
