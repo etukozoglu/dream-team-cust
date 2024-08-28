@@ -1,0 +1,13 @@
+{
+    "first_name": "Prénom",
+    "last_name": "Nom",
+    "company_name": "Nom de la société",
+    "company_size": "Taille de l'entreprise",
+    "email": "Email",
+    "phone_number": "Numéro de téléphone",
+    "number_of_developers": "Nombre de développeurs",
+    "role": "Fonction",
+    "message": "Message",
+    "button": "SEND"
+  }
+  

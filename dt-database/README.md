@@ -16,15 +16,15 @@ The main table used for storing customer information is `customer_requests`. Bel
 | Column Name          | Data Type     | Description                              |
 |----------------------|---------------|------------------------------------------|
 | `id`                 | SERIAL        | Primary key, auto-incremented ID         |
-| `first_name`         | VARCHAR(255)  | Customer's first name                    |
-| `last_name`          | VARCHAR(255)  | Customer's last name                     |
-| `company_name`       | VARCHAR(255)  | Name of the company                      |
+| `first_name`         | VARCHAR(200)  | Customer's first name                    |
+| `last_name`          | VARCHAR(200)  | Customer's last name                     |
+| `company_name`       | VARCHAR(20)  | Name of the company                      |
 | `company_size`       | VARCHAR(50)   | Company size (<10, <50, <250, >=250 ) |
 | `email`              | VARCHAR(255)  | Customer's email address                 |
-| `phone_number`       | VARCHAR(20)   | Customer's phone number                  |
+| `phone_number`       | VARCHAR(50)   | Customer's phone number                  |
 | `number_of_developers` | VARCHAR(50) | Number of developers (<10, <50, <250, >=250) |
-| `role`               | VARCHAR(255)  | Customer's role in the company           |
-| `message`            | TEXT          | Free text message from the customer      |
+| `role`               | VARCHAR(50)  | Customer's role in the company           |
+| `message`            | VARCHAR(2000)          | Free text message from the customer      |
 
 ## Setup Instructions
 
