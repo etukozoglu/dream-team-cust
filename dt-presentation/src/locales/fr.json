@@ -8,6 +8,14 @@
     "number_of_developers": "Nombre de développeurs",
     "role": "Fonction",
     "message": "Message",
-    "button": "SEND"
+    "button": "ENVOYER",
+    "placeholders": {
+      "company_name": "Entrez le nom de votre entreprise",
+      "firstname": "max 100 caractères",
+      "lastname": "max 100 caractères",
+      "role": "votre rôle dans l'entreprise",
+      "phone_number": "10 chiffres",
+      "message": "Quelles informations supplémentaires souhaitez-vous partager ?"
+    }
   }
   
