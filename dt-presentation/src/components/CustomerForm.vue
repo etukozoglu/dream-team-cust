@@ -1,13 +1,13 @@
 <template>
-<div class="language-switcher text-center">
+<div class="language-switcher text-center m-5">
   <button class="btn btn-primary me-2" @click="changeLanguage('en')">English</button>
   <button class="btn btn-primary" @click="changeLanguage('fr')">Français</button>
 </div>
 
 
 <div class="container col-12 col-md-8">
-  <h1 class="m-5 text-center">Demande de devis</h1>
-  <form class="p-5 fs-5 text bg-light" id="form">
+  <h1 class="m-5 text-center">{{ $t('page_title') }}</h1>
+  <form class="p-5 fs-5 text bg-light">
     <div class="row align-items-end">
       <div class="mb-5 col-12 col-md-6">
         <label for="companyName" class="form-label">{{ $t('company_name') }}*</label>
