@@ -9,7 +9,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_size_id")
+    @Column(name = "request_number")
     private Long id;
 
 
@@ -97,5 +97,16 @@ public class Customer {
 
     public Long getId() {
         return id;
+    }
+
+    public void setCompanySize(CompanySize companySize) {
+        this.size = companySize;
+    }
+
+    public void setTeamSize(TeamSize teamSize) {
+    }
+
+    public void setName(Object name) {
+
     }
 }

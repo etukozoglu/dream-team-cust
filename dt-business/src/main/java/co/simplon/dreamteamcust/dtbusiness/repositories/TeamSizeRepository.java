@@ -4,4 +4,5 @@ import co.simplon.dreamteamcust.dtbusiness.entities.TeamSize;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TeamSizeRepository  extends JpaRepository<TeamSize, Long> {
+    TeamSize findByNameIgnoreCase(String teamSizeName);
 }

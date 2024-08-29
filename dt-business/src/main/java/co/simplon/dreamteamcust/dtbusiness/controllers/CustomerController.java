@@ -17,8 +17,8 @@ public class CustomerController {
         this.service = service;
     }
 
-    @PostMapping
-    void create (CustomerCreate inputs) {
-        service.create(inputs);
-    }
+//    @PostMapping
+//    void create (CustomerCreate inputs) {
+//        service.create(inputs);
+//    }
 }

@@ -3,7 +3,7 @@ package co.simplon.dreamteamcust.dtbusiness.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "t_team_size")
+@Table(name = "t_team_sizes")
 public class TeamSize {
 
     @Id
@@ -24,5 +24,9 @@ public class TeamSize {
 
     public Long getId() {
         return id;
+    }
+
+    public void setName(String teamSizeName) {
+        this.size = teamSizeName;
     }
 }
