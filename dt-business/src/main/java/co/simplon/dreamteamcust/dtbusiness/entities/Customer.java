@@ -1,23 +1,44 @@
 package co.simplon.dreamteamcust.dtbusiness.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.mapping.ToOne;
 
 @Entity
+@Table(name = "t_customers")
 public class Customer {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
-    private String job;
-    private String company;
-    private String message;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customer_size_id")
     private Long id;
+
+
+
+    @Column(name = "customer_firstname")
+    private String firstName;
+
+    @Column(name = "customer_lastname")
+    private String lastName;
+
+    @Column(name = "customer_email")
+    private String email;
+
+    @Column(name = "customer_phone_number")
+    private String phone;
+
+    @Column(name = "customer_role")
+    private String role;
+
+    @Column(name = "customer_company_name")
+    private String company;
+
+    @Column(name = "customer_message")
+    private String message;
+
+    @OneToOne
+    @JoinColumn(name = "company_size_range_id")
+    private CompanySize size;
+
 
     public String getFirstName() {
         return firstName;
@@ -51,12 +72,11 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getJob() {
-        return job;
+    public String getRole() {
+        return role;
     }
-
-    public void setJob(String job) {
-        this.job = job;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getCompany() {
@@ -73,10 +93,6 @@ public class Customer {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getId() {

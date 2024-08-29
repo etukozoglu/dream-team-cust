@@ -1,16 +1,18 @@
 package co.simplon.dreamteamcust.dtbusiness.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "t_team_size")
 public class TeamSize {
-    String size;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "team_size_id")
     private Long id;
+
+    @Column(name = "team_size_range")
+    String size;
 
     public String getSize() {
         return size;
@@ -18,10 +20,6 @@ public class TeamSize {
 
     public void setSize(String size) {
         this.size = size;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getId() {
