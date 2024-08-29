@@ -1,5 +1,7 @@
 package co.simplon.dreamteamcust.dtbusiness.services;
 
+import org.springframework.stereotype.Service;
+
 import co.simplon.dreamteamcust.dtbusiness.dtos.CustomerCreate;
 import co.simplon.dreamteamcust.dtbusiness.entities.CompanySize;
 import co.simplon.dreamteamcust.dtbusiness.entities.Customer;
@@ -8,56 +10,53 @@ import co.simplon.dreamteamcust.dtbusiness.repositories.CompanySizeRepository;
 import co.simplon.dreamteamcust.dtbusiness.repositories.CustomerRepository;
 import co.simplon.dreamteamcust.dtbusiness.repositories.TeamSizeRepository;
 
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collection;
-
 @Service
 public class CustomerService {
 
-    private final CustomerRepository customers;
-    private final CompanySizeRepository companySizes;
-    private final TeamSizeRepository teamSizes;
+    private final CustomerRepository customerRepo;
+    private final CompanySizeRepository companySizeRepo;
+    private final TeamSizeRepository teamSizeRepo;
 
-    public CustomerService(CustomerRepository customers, CompanySizeRepository companySizes, TeamSizeRepository teamSizes) {
-        this.customers = customers;
-        this.companySizes = companySizes;
-        this.teamSizes = teamSizes;
+    public CustomerService(CustomerRepository customerRepo, CompanySizeRepository companySizeRepo,
+	    TeamSizeRepository teamSizeRepo) {
+	this.customerRepo = customerRepo;
+	this.companySizeRepo = companySizeRepo;
+	this.teamSizeRepo = teamSizeRepo;
     }
 
-  @Transactional
-    public void create(CustomerCreate inputs) {
-        Customer entity = new Customer();
-        entity.setName(inputs.name());
-        entity.setCompanySize(companySizes.getOne(inputs.companySizeId()));
-        entity.setTeamSize(teamSizes.getOne(inputs.teamSizeId()));
-        customers.save(entity);
+    public CustomerCreate createCustomer(CustomerCreate customerCreate) {
 
-        String companyName = inputs.companyName();
-        CompanySize companySize = companySizes.findByNameIgnoreCase(companyName);
-        if (companySize == null) {
-            companySize = new CompanySize();
-            companySize.setName(companyName);
-            companySizes.save(companySize);
-        }
-        entity.setCompanySize(companySize);
+	// Convertir les énumérations en entités
+	// Recherche de TeamSize
+	TeamSize teamSize = teamSizeRepo.findByRange(customerCreate.teamSize())
+		.orElseThrow(() -> new IllegalArgumentException("Invalid team size: " + customerCreate.teamSize()));
 
-        String teamSizeName = inputs.teamSizeName();
-        TeamSize teamSize = teamSizes.findByNameIgnoreCase(teamSizeName);
-        if (teamSize == null) {
-            teamSize = new TeamSize();
-            teamSize.setName(teamSizeName);
-            teamSizes.save(teamSize);
-        }
-        entity.setTeamSize(teamSize);
-        customers.save(entity);
+	// Recherche de CompanySize
+	CompanySize companySize = companySizeRepo.findByRange(customerCreate.companySize()).orElseThrow(
+		() -> new IllegalArgumentException("Invalid company size: " + customerCreate.companySize()));
+
+	// Mapper le DTO vers l'entité
+	Customer customer = new Customer();
+	customer.setFirstName(customerCreate.firstName());
+	customer.setLastName(customerCreate.lastName());
+	customer.setEmail(customerCreate.email());
+	customer.setPhoneNumber(customerCreate.phoneNumber());
+	customer.setRole(customerCreate.role());
+	customer.setCompanyName(customerCreate.companyName());
+	customer.setMessage(customerCreate.message());
+	customer.setTeamSize(teamSize);
+	customer.setCompanySize(companySize);
+
+	// Enregistrer l'entité en utilisant le repository
+	Customer savedCustomer = customerRepo.save(customer);
+
+	// Retourner le DTO correspondant
+	return mapToDto(savedCustomer);
     }
 
-    public <CustomerView> Collection<CustomerView> getAll() {
-        return customers.findAllProjectedBy();
+    private CustomerCreate mapToDto(Customer customer) {
+	return new CustomerCreate(customer.getRequestNumber(), customer.getFirstName(), customer.getLastName(),
+		customer.getEmail(), customer.getPhoneNumber(), customer.getRole(), customer.getCompanyName(),
+		customer.getMessage(), customer.getTeamSize().getRange(), customer.getCompanySize().getRange());
     }
-
-
 }

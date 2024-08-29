@@ -1,8 +1,13 @@
 package co.simplon.dreamteamcust.dtbusiness.repositories;
 
-import co.simplon.dreamteamcust.dtbusiness.entities.CompanySize;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import co.simplon.dreamteamcust.dtbusiness.entities.CompanySize;
+import co.simplon.dreamteamcust.dtbusiness.enums.CompanySizeRange;
+
 public interface CompanySizeRepository extends JpaRepository<CompanySize, Long> {
-    CompanySize findByNameIgnoreCase(String companyName);
+    Optional<CompanySize> findByRange(CompanySizeRange range);
+
 }

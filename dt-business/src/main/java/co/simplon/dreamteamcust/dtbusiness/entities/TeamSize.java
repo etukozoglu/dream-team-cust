@@ -1,32 +1,50 @@
 package co.simplon.dreamteamcust.dtbusiness.entities;
 
-import jakarta.persistence.*;
+import co.simplon.dreamteamcust.dtbusiness.enums.TeamSizeRange;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "t_team_sizes")
 public class TeamSize {
 
+    public TeamSize() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_size_id")
-    private Long id;
+    private Long teamSizeId;
 
-    @Column(name = "team_size_range")
-    String size;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "team_size_range", nullable = false, length = 50)
+    private TeamSizeRange range;
 
-    public String getSize() {
-        return size;
+    public Long getTeamSizeId() {
+	return teamSizeId;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public void setTeamSizeId(Long teamSizeId) {
+	this.teamSizeId = teamSizeId;
     }
 
-    public Long getId() {
-        return id;
+    public TeamSizeRange getRange() {
+	return range;
     }
 
-    public void setName(String teamSizeName) {
-        this.size = teamSizeName;
+    public void setRange(TeamSizeRange range) {
+	this.range = range;
     }
+
+    @Override
+    public String toString() {
+	return "{teamSizeId=" + teamSizeId + ", range=" + range + "}";
+    }
+
 }

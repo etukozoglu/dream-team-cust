@@ -1,8 +1,12 @@
 package co.simplon.dreamteamcust.dtbusiness.repositories;
 
-import co.simplon.dreamteamcust.dtbusiness.entities.TeamSize;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TeamSizeRepository  extends JpaRepository<TeamSize, Long> {
-    TeamSize findByNameIgnoreCase(String teamSizeName);
+import co.simplon.dreamteamcust.dtbusiness.entities.TeamSize;
+import co.simplon.dreamteamcust.dtbusiness.enums.TeamSizeRange;
+
+public interface TeamSizeRepository extends JpaRepository<TeamSize, Long> {
+    Optional<TeamSize> findByRange(TeamSizeRange range);
 }
