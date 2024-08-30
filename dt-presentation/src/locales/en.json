@@ -15,8 +15,18 @@
       "firstname": "max 100 characters",
       "lastname": "max 100 characters",
       "role": "Your role in the company",
-      "phone_number": "10 digits",
+      "phone_number": "Ex: 0033665348771",
       "message": "Any additional information you want to share?"
+    },
+    "errors": {
+        "company_name": "Please enter your company name",
+        "company_size": "Please select an option.",
+        "number_of_developers": "Please select an option.",
+        "firstname": "Please enter your first name",
+        "lastname": "Please enter your last name",
+        "email": "Please entre a valid email adress",
+        "phone_number": "Please enter your phone number",
+        "message": "Please enter your message to us. (max 2000 characters)"
     }
   }
   
