@@ -19,10 +19,10 @@ The main table used for storing customer information is `customer_requests`. Bel
 | `first_name`         | VARCHAR(200)  | Customer's first name                    |
 | `last_name`          | VARCHAR(200)  | Customer's last name                     |
 | `company_name`       | VARCHAR(20)  | Name of the company                      |
-| `company_size`       | VARCHAR(50)   | Company size (<10, <50, <250, >=250 ) |
+| `company_size`       | VARCHAR(50)   | Company size  |
 | `email`              | VARCHAR(255)  | Customer's email address                 |
 | `phone_number`       | VARCHAR(50)   | Customer's phone number                  |
-| `number_of_developers` | VARCHAR(50) | Number of developers (<10, <50, <250, >=250) |
+| `number_of_developers` | VARCHAR(50) | Number of developers  |
 | `role`               | VARCHAR(50)  | Customer's role in the company           |
 | `message`            | VARCHAR(2000)          | Free text message from the customer      |
 
@@ -40,7 +40,7 @@ The main table used for storing customer information is `customer_requests`. Bel
 3. **Connect to the Database**:
    - Connect to the newly created database:
      ```bash
-     psql -U your-username -d dreamteamdb
+     psql -U your-username -d dt_database
      ```
 
 4. **Create the Table**:
