@@ -1,4 +1,4 @@
-### **Data (PostgreSQL) README**
+### **Data README**
 
 # Dream Team - PostgreSQL Database Setup
 
