@@ -3,7 +3,7 @@
 # Dream Team - PostgreSQL Database Setup
 
 ## Project Overview
-This project involves setting up the PostgreSQL database for the "Dream Team" initiative, which stores customer account request information. The database is used by the backend service to persist data collected from the frontend form.
+This part involves setting up the PostgreSQL database for the "Dream Team" project, which stores customer request information. The database is used by the backend service to persist data collected from the frontend form.
 
 ## Features
 - Storage of customer account request details.
@@ -15,10 +15,10 @@ The main table used for storing customer information is `customer_requests`. Bel
 
 | Column Name          | Data Type     | Description                              |
 |----------------------|---------------|------------------------------------------|
-| `id`                 | SERIAL        | Primary key, auto-incremented ID         |
-| `first_name`         | VARCHAR(200)  | Customer's first name                    |
-| `last_name`          | VARCHAR(200)  | Customer's last name                     |
-| `company_name`       | VARCHAR(20)  | Name of the company                      |
+| `request_number`                 | SERIAL        | Primary key, auto-incremented ID         |
+| `first_name`         | VARCHAR(100)  | Customer's first name                    |
+| `last_name`          | VARCHAR(100)  | Customer's last name                     |
+| `company_name`       | VARCHAR(200)  | Name of the company                      |
 | `company_size`       | VARCHAR(50)   | Company size  |
 | `email`              | VARCHAR(255)  | Customer's email address                 |
 | `phone_number`       | VARCHAR(50)   | Customer's phone number                  |
@@ -34,7 +34,7 @@ The main table used for storing customer information is `customer_requests`. Bel
 2. **Create the Database**:
    - Open the PostgreSQL command line or use a tool like pgAdmin, and create a new database:
      ```sql
-     CREATE DATABASE dreamteamdb;
+     CREATE DATABASE dt_database;
      ```
 
 3. **Connect to the Database**:
@@ -44,19 +44,41 @@ The main table used for storing customer information is `customer_requests`. Bel
      ```
 
 4. **Create the Table**:
-   - Run the following SQL script to create the `customer_requests` table:
+   - Run the following SQL script to create the tables:
      ```sql
-     CREATE TABLE customer_requests (
-         id SERIAL PRIMARY KEY,
-         first_name VARCHAR(255),
-         last_name VARCHAR(255),
-         company_name VARCHAR(255),
-         company_size VARCHAR(50),
-         email VARCHAR(255),
-         phone_number VARCHAR(20),
-         number_of_developers VARCHAR(50),
-         role VARCHAR(255),
-         message TEXT
+DROP TABLE IF EXISTS t_customers, t_company_sizes, t_team_sizes;
+
+
+CREATE TABLE t_company_sizes (
+    company_size_id SERIAL,
+    company_size_range VARCHAR(50) NOT NULL,
+    CONSTRAINT t_company_sizes_pkey PRIMARY KEY (company_size_id)
+);
+
+CREATE TABLE t_team_sizes (
+    team_size_id SERIAL,
+    team_size_range VARCHAR(50) NOT NULL,
+    CONSTRAINT t_team_sizes_pkey PRIMARY KEY (team_size_id)
+);
+
+CREATE TABLE t_customers (
+    request_number INT GENERATED ALWAYS AS IDENTITY,
+    customer_firstname VARCHAR(200) NOT NULL,
+    customer_lastname VARCHAR(200) NOT NULL,
+    customer_email VARCHAR(255) NOT NULL,
+    customer_phone_number VARCHAR(25) NOT NULL,
+    customer_role VARCHAR(50), 
+    customer_company_name VARCHAR(200) NOT NULL,
+    customer_message VARCHAR(2000) NOT NULL,
+    team_size_id INT NOT NULL,
+    company_size_id INT NOT NULL,
+    CONSTRAINT t_customers_pkey PRIMARY KEY (request_number),
+    CONSTRAINT t_customers_t_team_sizes_fkey FOREIGN KEY (team_size_id) 
+		REFERENCES t_team_sizes(team_size_id),
+	CONSTRAINT t_customers_t_company_sizes_fkey FOREIGN KEY (company_size_id) 
+		REFERENCES t_company_sizes(company_size_id)
+);
+
      );
 
 ## Database Connection
