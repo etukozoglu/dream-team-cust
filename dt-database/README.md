@@ -78,8 +78,7 @@ CREATE TABLE t_customers (
 	CONSTRAINT t_customers_t_company_sizes_fkey FOREIGN KEY (company_size_id) 
 		REFERENCES t_company_sizes(company_size_id)
 );
-
-     );
+```
 
 ## Database Connection
 Ensure that the backend application can connect to this database by configuring the connection details in the backend's `application.properties` file.
