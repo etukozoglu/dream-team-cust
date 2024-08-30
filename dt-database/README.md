@@ -45,9 +45,9 @@ The main table used for storing customer information is `customer_requests`. Bel
 
 4. **Create the Table**:
    - Run the following SQL script to create the tables:
+     <br>
      ```sql
 DROP TABLE IF EXISTS t_customers, t_company_sizes, t_team_sizes;
-
 
 CREATE TABLE t_company_sizes (
     company_size_id SERIAL,
@@ -77,8 +77,7 @@ CREATE TABLE t_customers (
 		REFERENCES t_team_sizes(team_size_id),
 	CONSTRAINT t_customers_t_company_sizes_fkey FOREIGN KEY (company_size_id) 
 		REFERENCES t_company_sizes(company_size_id)
-);
-```
+);```
 
 ## Database Connection
 Ensure that the backend application can connect to this database by configuring the connection details in the backend's `application.properties` file.
