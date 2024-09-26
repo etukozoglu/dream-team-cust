@@ -1,10 +1,11 @@
-package co.simplon.dreamteamcust.dtbusiness.entities;
+package co.simplon.dreamteam.customer.business.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "t_developers")
 public class Developer {
 
     @Id

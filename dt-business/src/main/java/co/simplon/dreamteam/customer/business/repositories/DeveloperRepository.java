@@ -1,4 +1,4 @@
-package co.simplon.dreamteamcust.dtbusiness.repositories;
+package co.simplon.dreamteam.customer.business.repositories;
 
 import co.simplon.dreamteam.customer.business.dtos.DeveloperUpload;
 import co.simplon.dreamteamcust.dtbusiness.entities.Developer;

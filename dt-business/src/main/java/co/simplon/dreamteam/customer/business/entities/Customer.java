@@ -1,4 +1,4 @@
-package co.simplon.dreamteamcust.dtbusiness.entities;
+package co.simplon.dreamteam.customer.business.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
