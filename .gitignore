@@ -14,3 +14,4 @@ design
 **/bin
 
 **/.DS_Store
+dt-business/src/main/resources/application.properties
