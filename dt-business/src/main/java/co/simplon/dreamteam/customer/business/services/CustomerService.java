@@ -1,5 +1,7 @@
 package co.simplon.dreamteam.customer.business.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import co.simplon.dreamteam.customer.business.dtos.CustomerCreate;
@@ -26,16 +28,15 @@ public class CustomerService {
 
     public CustomerCreate createCustomer(CustomerCreate customerCreate) {
 
-	// Convertir les énumérations en entités
-	// Recherche de TeamSize
+	// On recherche de TeamSize
 	TeamSize teamSize = teamSizeRepo.findByRange(customerCreate.teamSize())
 		.orElseThrow(() -> new IllegalArgumentException("Invalid team size: " + customerCreate.teamSize()));
 
-	// Recherche de CompanySize
+	// On recherche de CompanySize
 	CompanySize companySize = companySizeRepo.findByRange(customerCreate.companySize()).orElseThrow(
 		() -> new IllegalArgumentException("Invalid company size: " + customerCreate.companySize()));
 
-	// Mapper le DTO vers l'entité
+	// On mappe le DTO vers l'entité
 	Customer customer = new Customer();
 	customer.setFirstName(customerCreate.firstName());
 	customer.setLastName(customerCreate.lastName());
@@ -47,10 +48,10 @@ public class CustomerService {
 	customer.setTeamSize(teamSize);
 	customer.setCompanySize(companySize);
 
-	// Enregistrer l'entité en utilisant le repository
+	// On enregistre l'entité dans le repository
 	Customer savedCustomer = customerRepo.save(customer);
 
-	// Retourner le DTO correspondant
+	// On retourne le DTO correspondant
 	return mapToDto(savedCustomer);
     }
 
@@ -59,4 +60,9 @@ public class CustomerService {
 		customer.getEmail(), customer.getPhoneNumber(), customer.getRole(), customer.getCompanyName(),
 		customer.getMessage(), customer.getTeamSize().getRange(), customer.getCompanySize().getRange());
     }
+
+    public List<Customer> getAllCustomers() {
+	return customerRepo.findAll();
+    }
+
 }
