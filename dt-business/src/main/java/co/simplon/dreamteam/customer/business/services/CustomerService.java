@@ -1,14 +1,14 @@
-package co.simplon.dreamteamcust.dtbusiness.services;
+package co.simplon.dreamteam.customer.business.services;
 
 import org.springframework.stereotype.Service;
 
-import co.simplon.dreamteamcust.dtbusiness.dtos.CustomerCreate;
-import co.simplon.dreamteamcust.dtbusiness.entities.CompanySize;
-import co.simplon.dreamteamcust.dtbusiness.entities.Customer;
-import co.simplon.dreamteamcust.dtbusiness.entities.TeamSize;
-import co.simplon.dreamteamcust.dtbusiness.repositories.CompanySizeRepository;
-import co.simplon.dreamteamcust.dtbusiness.repositories.CustomerRepository;
-import co.simplon.dreamteamcust.dtbusiness.repositories.TeamSizeRepository;
+import co.simplon.dreamteam.customer.business.dtos.CustomerCreate;
+import co.simplon.dreamteam.customer.business.entities.CompanySize;
+import co.simplon.dreamteam.customer.business.entities.Customer;
+import co.simplon.dreamteam.customer.business.entities.TeamSize;
+import co.simplon.dreamteam.customer.business.repositories.CompanySizeRepository;
+import co.simplon.dreamteam.customer.business.repositories.CustomerRepository;
+import co.simplon.dreamteam.customer.business.repositories.TeamSizeRepository;
 
 @Service
 public class CustomerService {
