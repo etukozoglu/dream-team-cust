@@ -17,11 +17,14 @@ public class DeveloperController {
         this.developerService = developerService;
     }
 
+    @GetMapping("test")
+    public ResponseEntity<String> testEndpoint() {
+        return ResponseEntity.ok("Endpoint is working");
+    }
 
     @PostMapping("upload")
     public ResponseEntity<Void> uploadDevelopers(@RequestParam("file") MultipartFile file) {
         try {
-            // Pass the MultipartFile to the service layer for processing
             developerService.saveDevelopersFromCsv(file);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
