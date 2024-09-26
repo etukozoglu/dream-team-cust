@@ -1,5 +1,6 @@
-DROP TABLE IF EXISTS t_customers, t_company_sizes, t_team_sizes;
-
+DROP TABLE IF EXISTS t_customers;
+DROP TABLE IF EXISTS t_company_sizes;
+DROP TABLE IF EXISTS t_team_sizes;
 
 CREATE TABLE t_company_sizes (
     company_size_id SERIAL,
