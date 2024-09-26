@@ -7,13 +7,13 @@ import fr from './locales/fr.json';
 // Importer Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// L'anglais est la langue par défaut
-const defaultLanguage = 'en';
+// Détection de la langue du navigateur
+const browserLanguage = navigator.language.startsWith('fr') ? 'fr' : 'en';
 
 // Configuration de Vue I18n
 const i18n = createI18n({
-  locale: defaultLanguage, // On définit la langue par défaut sur l'anglais
-  fallbackLocale: 'en', // Si la traduction n'est pas disponible dans la langue actuelle, utiliser l'anglais
+  locale: browserLanguage,
+  fallbackLocale: 'en',
   messages: {
     en,
     fr

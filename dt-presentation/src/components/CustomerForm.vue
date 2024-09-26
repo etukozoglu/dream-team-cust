@@ -1,10 +1,6 @@
 <template>
-  <div class="language-switcher text-center m-3">
-    <button class="btn btn-primary me-2" @click="changeLanguage('en')">English</button>
-    <button class="btn btn-primary" @click="changeLanguage('fr')">Français</button>
-  </div>
 
-      <h1 class="m-3 text-center">{{ $t('page_title') }}</h1>
+      <h1 class="m-5 text-center">{{ $t('page_title') }}</h1>
 
   <div class="container col-12 col-md-10 bg-light p-3">
     <form class="p-3 fs-5 text bg-light rounded-2" @submit.prevent="submitForm">
