@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS t_customers;
-DROP TABLE IF EXISTS t_company_sizes;
-DROP TABLE IF EXISTS t_team_sizes;
+DROP TABLE IF EXISTS t_customers, t_company_sizes, t_team_sizes;
+DROP TABLE IF EXISTS t_developers;
+
 
 CREATE TABLE t_company_sizes (
     company_size_id SERIAL,
@@ -30,4 +30,17 @@ CREATE TABLE t_customers (
 		REFERENCES t_team_sizes(team_size_id),
 	CONSTRAINT t_customers_t_company_sizes_fkey FOREIGN KEY (company_size_id) 
 		REFERENCES t_company_sizes(company_size_id)
+);
+
+
+
+
+CREATE TABLE t_developers(
+	id_dev INT GENERATED ALWAYS AS IDENTITY,
+	internal_number VARCHAR(20) NOT NULL,
+   	first_name VARCHAR(100) NOT NULL,
+   	last_name VARCHAR(100) NOT NULL,
+   	email VARCHAR(50) NOT NULL,
+   	CONSTRAINT t_developers_pkey PRIMARY KEY (id_dev),
+   	CONSTRAINT t_developers_ukey UNIQUE (internal_number)
 );

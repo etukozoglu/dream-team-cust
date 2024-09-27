@@ -1,3 +1,96 @@
+<template>
+  <!-- <div class="language-switcher text-center m-3">
+    <button class="btn btn-primary me-2" @click="changeLanguage('en')">English</button>
+    <button class="btn btn-primary" @click="changeLanguage('fr')">Français</button>
+  </div> -->
+
+      <h1 class="m-3 text-center">{{ $t('page_title') }}</h1>
+
+  <div class="container col-12 col-md-10 bg-light p-3">
+    <form class="p-3 fs-5 text bg-light rounded-2" @submit.prevent="submitForm">
+      <div class="row align-items-end">
+        <div class="mb-5 col-12 col-md-6">
+          <label for="companyName" class="form-label fs-5">{{ $t('company_name') }}*</label>
+          <input type="text" class="form-control" :class="{'is-invalid': errors.company_name}" id="companyName" v-model="companyName">
+          <div v-if="errors.company_name" class="invalid-feedback d-block" style="min-height: 1rem;">{{ $t('errors.company_name') }}</div>
+        </div>
+        <div class="mb-5 col-12 col-md-3">
+          <label class="form-label fs-5" for="companySize">{{ $t('company_size') }}*</label>
+          <select class="form-select w-100" :class="{'is-invalid': errors.company_size}" v-model="companySize" id="companySize" @change="updateDeveloperOptions">
+            <option value="LESS_THAN_1000">Less than 1000</option>
+            <option value="FROM_1000_TO_10000">From 1000 to 10000</option>
+            <option value="MORE_THAN_10000">More than 10000</option>
+          </select>
+          <div v-if="errors.company_size" class="invalid-feedback d-block" style="min-height: 1rem;">{{ $t('errors.company_size') }}</div>
+        </div>
+        
+        <div class="mb-5 col-12 col-md-3">
+          <label class="form-label fs-5" for="teamSize">{{ $t('number_of_developers') }}*</label>
+          <select class="form-select w-100" :class="{'is-invalid': errors.number_of_developers}" v-model="teamSize" id="teamSize">
+            <option v-for="option in filteredDeveloperOptions" :key="option.value" :value="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+          <div v-if="errors.number_of_developers" class="invalid-feedback d-block" style="min-height: 1rem;">{{ $t('errors.number_of_developers') }}</div>
+        </div>
+      </div>
+
+      <div class="row align-items-end">
+        <div class="mb-5 col-12 col-md-6">
+          <label for="firstName" class="form-label fs-5">{{ $t('first_name') }}*</label>
+          <input type="text" :class="{'is-invalid': errors.firstname}" :placeholder="$t('placeholders.firstname')" class="form-control" id="firstName" v-model="firstName">
+          <div v-if="errors.firstname" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('errors.firstname') }}</div>
+        </div>
+        <div class="mb-5 col-12 col-md-6">
+          <label for="lastName" class="form-label fs-5">{{ $t('last_name') }}*</label>
+          <input type="text" :class="{'is-invalid': errors.lastname}" :placeholder="$t('placeholders.lastname')" class="form-control" id="lastName" v-model="lastName">
+          <div v-if="errors.lastname" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('errors.lastname') }}</div>
+        </div>
+      </div>
+
+      <div class="row align-items-end">
+        <div class="mb-5 col-12">
+          <label for="role" class="form-label fs-5">{{ $t('role') }}</label>
+          <input type="text" :class="{'is-invalid': errors.role}" :placeholder="$t('placeholders.role')" class="form-control" id="role" v-model="role">
+          <div v-if="errors.role" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('errors.role') }}</div>
+        </div>
+      </div>
+
+      <div class="row align-items-end">
+        <div class="mb-5 col-12 col-md-6">
+          <label for="email" class="form-label fs-5">{{ $t('email') }}*</label>
+          <input type="email" :class="{'is-invalid': errors.email}" class="form-control" id="email" v-model="email">
+          <div v-if="errors.email" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('errors.email') }}</div>
+        </div>
+        <div class="mb-5 col-12 col-md-6">
+          <label for="phoneNumber" class="form-label fs-5">{{ $t('phone_number') }}*</label>
+          <input type="tel" :class="{'is-invalid': errors.phone_number}" :placeholder="$t('placeholders.phone_number')" id="phoneNumber" class="form-control" v-model="phoneNumber">
+          <div v-if="errors.phone_number" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('errors.phone_number') }}</div>
+        </div>
+      </div>
+
+      <div class="row align-items-end">
+        <div class="mb-5 col-12">
+          <label for="message" class="form-label fs-5">{{ $t('message') }}*</label>
+          <textarea maxlength="2000" :class="{'is-invalid': errors.message}" rows="5" :placeholder="$t('placeholders.message')" class="form-control" id="message" v-model="message"></textarea>
+          <div v-if="errors.message" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('errors.message') }}</div>
+        </div>
+      </div>
+
+      <div class="row align-items-end">
+        <!-- Full width button only in mobile view -->
+        <div class="mb-5 col-12 d-block d-md-none">
+          <button type="submit" class="btn btn-primary fs-5 w-100">{{ $t('button') }}</button>
+        </div>
+        <!-- Normal button in larger screens -->
+        <div class="mb-5 col-12 col-md-6 offset-md-3 d-none d-md-block text-center">
+          <button type="submit" class="btn btn-primary fs-5">{{ $t('button') }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</template>
+
 <script>
 export default {
   data() {
@@ -29,7 +122,7 @@ export default {
     changeLanguage(lang) {
       this.$i18n.locale = lang;
     },
-    updateDeveloperOptions() {
+        updateDeveloperOptions() {
       if (this.companySize === 'LESS_THAN_1000') {
         this.filteredDeveloperOptions = this.developerOptions.filter(option => option.value !== 'MORE_THAN_1000');
       } else {
@@ -72,7 +165,8 @@ export default {
     },
     async submitForm() {
       if (!this.validateForm()) {
-        return; // Don't submit if the form is invalid
+        // Don't submit if the form is invalid
+        return;
       }
 
       const formData = {
@@ -87,6 +181,7 @@ export default {
         message: this.message
       };
 
+      // convert the object to JSON.stringify for backend
       const json = JSON.stringify(formData);
 
       const options = {
@@ -96,9 +191,7 @@ export default {
       };
 
       try {
-        const apiUrl = import.meta.env.VITE_API_URL;
-        console.log(apiUrl);
-        const response = await fetch(`${apiUrl}/form`, options); 
+        const response = await fetch('http://localhost:8080/form', options); 
         if (response.status === 200) {
           this.resetForm();
           alert('Bravo, you have submitted your request.');
@@ -124,95 +217,6 @@ export default {
   }
 };
 </script>
-
-
-<template>
-  <h1 class="m-5 text-center">{{ $t('customerForm.pageTitle') }}</h1>
-
-  <div class="container col-12 col-md-10 bg-light p-3">
-    <form class="p-3 fs-5 text bg-light rounded-2" @submit.prevent="submitForm">
-      <div class="row align-items-end">
-        <div class="mb-5 col-12 col-md-6">
-          <label for="companyName" class="form-label fs-5">{{ $t('customerForm.companyName') }}*</label>
-          <input type="text" class="form-control" :class="{'is-invalid': errors.companyName}" id="companyName" v-model="companyName">
-          <div v-if="errors.companyName" class="invalid-feedback d-block" style="min-height: 1rem;">{{ $t('customerForm.errors.companyName') }}</div>
-        </div>
-        <div class="mb-5 col-12 col-md-3">
-          <label class="form-label fs-5" for="companySize">{{ $t('customerForm.companySize') }}*</label>
-          <select class="form-select w-100" :class="{'is-invalid': errors.companySize}" v-model="companySize" id="companySize" @change="updateDeveloperOptions">
-            <option value="LESS_THAN_1000">Less than 1000</option>
-            <option value="FROM_1000_TO_10000">From 1000 to 10000</option>
-            <option value="MORE_THAN_10000">More than 10000</option>
-          </select>
-          <div v-if="errors.companySize" class="invalid-feedback d-block" style="min-height: 1rem;">{{ $t('customerForm.errors.companySize') }}</div>
-        </div>
-        
-        <div class="mb-5 col-12 col-md-3">
-          <label class="form-label fs-5" for="teamSize">{{ $t('customerForm.numberOfDevelopers') }}*</label>
-          <select class="form-select w-100" :class="{'is-invalid': errors.numberOfDevelopers}" v-model="teamSize" id="teamSize">
-            <option v-for="option in filteredDeveloperOptions" :key="option.value" :value="option.value">
-              {{ option.text }}
-            </option>
-          </select>
-          <div v-if="errors.numberOfDevelopers" class="invalid-feedback d-block" style="min-height: 1rem;">{{ $t('customerForm.errors.numberOfDevelopers') }}</div>
-        </div>
-      </div>
-
-      <div class="row align-items-end">
-        <div class="mb-5 col-12 col-md-6">
-          <label for="firstName" class="form-label fs-5">{{ $t('customerForm.firstName') }}*</label>
-          <input type="text" :class="{'is-invalid': errors.firstName}" :placeholder="$t('customerForm.placeholders.firstName')" class="form-control" id="firstName" v-model="firstName">
-          <div v-if="errors.firstName" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('customerForm.errors.firstName') }}</div>
-        </div>
-        <div class="mb-5 col-12 col-md-6">
-          <label for="lastName" class="form-label fs-5">{{ $t('customerForm.lastName') }}*</label>
-          <input type="text" :class="{'is-invalid': errors.lastName}" :placeholder="$t('customerForm.placeholders.lastName')" class="form-control" id="lastName" v-model="lastName">
-          <div v-if="errors.lastName" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('customerForm.errors.lastName') }}</div>
-        </div>
-      </div>
-
-      <div class="row align-items-end">
-        <div class="mb-5 col-12">
-          <label for="role" class="form-label fs-5">{{ $t('customerForm.role') }}</label>
-          <input type="text" :class="{'is-invalid': errors.role}" :placeholder="$t('customerForm.placeholders.role')" class="form-control" id="role" v-model="role">
-          <div v-if="errors.role" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('customerForm.errors.role') }}</div>
-        </div>
-      </div>
-
-      <div class="row align-items-end">
-        <div class="mb-5 col-12 col-md-6">
-          <label for="email" class="form-label fs-5">{{ $t('customerForm.email') }}*</label>
-          <input type="email" :class="{'is-invalid': errors.email}" class="form-control" id="email" v-model="email">
-          <div v-if="errors.email" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('customerForm.errors.email') }}</div>
-        </div>
-        <div class="mb-5 col-12 col-md-6">
-          <label for="phoneNumber" class="form-label fs-5">{{ $t('customerForm.phoneNumber') }}*</label>
-          <input type="tel" :class="{'is-invalid': errors.phoneNumber}" :placeholder="$t('customerForm.placeholders.phoneNumber')" id="phoneNumber" class="form-control" v-model="phoneNumber">
-          <div v-if="errors.phoneNumber" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('customerForm.errors.phoneNumber') }}</div>
-        </div>
-      </div>
-
-      <div class="row align-items-end">
-        <div class="mb-5 col-12">
-          <label for="message" class="form-label fs-5">{{ $t('customerForm.message') }}*</label>
-          <textarea maxlength="2000" :class="{'is-invalid': errors.message}" rows="5" :placeholder="$t('customerForm.placeholders.message')" class="form-control" id="message" v-model="message"></textarea>
-          <div v-if="errors.message" class="invalid-feedback d-block" style="min-height: 1.5rem;">{{ $t('customerForm.errors.message') }}</div>
-        </div>
-      </div>
-
-      <div class="row align-items-end">
-        <!-- Full width button only in mobile view -->
-        <div class="mb-5 col-12 d-block d-md-none">
-          <button type="submit" class="btn btn-primary fs-5 w-100">{{ $t('customerForm.button') }}</button>
-        </div>
-        <!-- Normal button in larger screens -->
-        <div class="mb-5 col-12 col-md-6 offset-md-3 d-none d-md-block text-center">
-          <button type="submit" class="btn btn-primary fs-5">{{ $t('customerForm.button') }}</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</template>
 
 <style scoped>
 </style>
