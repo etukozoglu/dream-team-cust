@@ -2,6 +2,8 @@ package co.simplon.dreamteam.customer.business.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,27 +21,31 @@ public class CompanySize {
     @Column(name = "company_size_id")
     private Long companySizeId;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "company_size_range", nullable = false, length = 50)
-    private String range; // Use String instead of Enum
+    private String range;
 
     public Long getCompanySizeId() {
-	return companySizeId;
+        return companySizeId;
     }
 
     public void setCompanySizeId(Long companySizeId) {
-	this.companySizeId = companySizeId;
+        this.companySizeId = companySizeId;
     }
 
     public String getRange() {
-	return range;
+        return range;
     }
 
     public void setRange(String range) {
-	this.range = range;
+        this.range = range;
     }
 
     @Override
     public String toString() {
-	return "{companySizeId=" + companySizeId + ", range=" + range + "}";
+        return "CompanySize{" +
+                "companySizeId=" + companySizeId +
+                ", range='" + range + '\'' +
+                '}';
     }
 }

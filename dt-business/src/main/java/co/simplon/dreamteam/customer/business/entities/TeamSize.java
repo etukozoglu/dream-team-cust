@@ -23,23 +23,23 @@ public class TeamSize {
     private String range;
 
     public Long getTeamSizeId() {
-	return teamSizeId;
+        return teamSizeId;
     }
 
     public void setTeamSizeId(Long teamSizeId) {
-	this.teamSizeId = teamSizeId;
+        this.teamSizeId = teamSizeId;
     }
 
     public String getRange() {
-	return range;
+        return range;
     }
 
     public void setRange(String range) {
-	this.range = range;
+        this.range = range;
     }
 
     @Override
     public String toString() {
-	return "{teamSizeId=" + teamSizeId + ", range=" + range + "}";
+        return "{teamSizeId=" + teamSizeId + ", range=" + range + "}";
     }
 }
