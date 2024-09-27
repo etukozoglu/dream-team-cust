@@ -1,21 +1,5 @@
-<template>
-  <h1 class="m-3 text-center">Upload Developers CSV</h1>
-  <div class="container col-12 col-md-10 bg-light p-3">
-    <form class="p-3 fs-5 text bg-light rounded-2" @submit.prevent="uploadFile">
-      <input type="file" @change="handleFileUpload" accept=".csv" required class="form-control mb-3"/>
-      <button class="btn btn-primary fs-5" type="submit">SEND</button>
-    </form>
-
-    <!-- Message de succès ou d'erreur -->
-    <div v-if="message" :class="['mt-3', messageType === 'success' ? 'text-success' : 'text-danger']">
-      {{ message }}
-    </div>
-  </div>
-</template>
-
 <script>
 import axios from 'axios';
-
 
 export default {
   data() {
@@ -62,6 +46,22 @@ export default {
   }
 };
 </script>
+
+<template>
+  <h1 class="m-3 text-center">{{ $t('uploadPage.pageTitle') }}</h1>
+  <div class="container col-12 col-md-10 bg-light p-3">
+    <form class="p-3 fs-5 text bg-light rounded-2" @submit.prevent="uploadFile">
+      <input type="file" @change="handleFileUpload" accept=".csv" required class="form-control mb-3"/>
+      <button class="btn btn-primary fs-5" type="submit">{{ $t('uploadPage.button') }}</button>
+    </form>
+
+    <!-- Message de succès ou d'erreur -->
+    <div v-if="message" :class="['mt-3', messageType === 'success' ? 'text-success' : 'text-danger']">
+      {{ message }}
+    </div>
+  </div>
+</template>
+
 
 <style scoped>
 .upload-container {

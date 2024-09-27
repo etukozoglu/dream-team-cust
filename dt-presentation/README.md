@@ -17,6 +17,8 @@ To get started with the project, follow these steps:
 
 1. **Install dependencies:**
    ```bash npm install```
+   ```npm install axios```
+
    
 2. **Run the development server:**
 ```bash npm run dev```

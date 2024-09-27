@@ -29,5 +29,9 @@
       "phoneNumber": "Veuillez entrer votre numéro de téléphone",
       "message": "Veuillez entrer votre message (max 2000 caractères)"
     }
+  },
+  "uploadPage": {
+    "pageTitle": "Téléverser le fichier CSV Developpeurs",
+    "button": "ENVOYER"
   }
 }

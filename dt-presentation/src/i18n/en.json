@@ -29,5 +29,9 @@
       "phoneNumber": "Please enter your phone number",
       "message": "Please enter your message to us (max 2000 characters)."
     }
+  },
+  "uploadPage": {
+    "pageTitle": "Upload Developpers CSV",
+    "button": "SEND"
   }
 }
