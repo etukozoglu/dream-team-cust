@@ -19,7 +19,10 @@ src/main/resources/application-dev.properties
 *.iws
 *.iml
 *.ipr
-src/main/resources/application.properties
+/src/main/resources/application.properties
+/src/main/resources/application-dev.properties
+
+
 
 ### NetBeans ###
 /nbproject/private/
