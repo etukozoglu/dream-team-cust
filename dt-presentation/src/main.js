@@ -1,18 +1,19 @@
 import { createApp } from 'vue';
-import { createI18n } from 'vue-i18n';
-import en from './locales/en.json';
-import fr from './locales/fr.json';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App.vue';
-import router from './router';
+import { createI18n } from 'vue-i18n';
+import en from './i18n/en.json';
+import fr from './i18n/fr.json';
 
-// L'anglais est la langue par défaut
-const defaultLanguage = 'en';
+// Importer Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Détection de la langue du navigateur
+const browserLanguage = navigator.language.startsWith('fr') ? 'fr' : 'en';
 
 // Configuration de Vue I18n
 const i18n = createI18n({
-  locale: defaultLanguage, // On définit la langue par défaut sur l'anglais
-  fallbackLocale: 'en', // Si la traduction n'est pas disponible dans la langue actuelle, utiliser l'anglais
+  locale: browserLanguage,
+  fallbackLocale: 'en',
   messages: {
     en,
     fr
@@ -20,6 +21,5 @@ const i18n = createI18n({
 });
 
 createApp(App)
-  .use(router) 
   .use(i18n)
   .mount('#app');
