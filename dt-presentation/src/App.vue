@@ -1,25 +1,25 @@
-<template>
-  <div id="app">
-    <Header />
-    <CustomerForm />
-  </div>
-</template>
-
 <script>
-import CustomerForm from './components/CustomerForm.vue';
-import Header from './components/Header.vue';
+import { RouterView } from 'vue-router'
+import Header from './components/Header.vue'
 
 export default {
-  name: 'App',
-  components: {
-    Header,
-    CustomerForm
-   
-  }
-};
+	name: 'App',
+	components: {
+		Header
+	}
+}
 </script>
 
-<style>
-/* Our global styles here */
+<template>
+	<Header />
+	<RouterView />
+</template>
+
+
+<style >
 </style>
+
+
+
+
 
