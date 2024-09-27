@@ -17,6 +17,8 @@ To get started with the project, follow these steps:
 
 1. **Install dependencies:**
    ```bash npm install```
+   ```npm install axios```
+
    
 2. **Run the development server:**
 ```bash npm run dev```
@@ -30,5 +32,5 @@ src/<br>
 components/: Reusable Vue components. (ex: CustomerForm.vue)<br>
 views/: The main pages of the application.<br>
 router/: Vue Router configuration.<br>
-locales/:i18n languages files.<br>
+i18n/:i18n languages files.<br>
 assets/: Static assets like images and styles.<br>

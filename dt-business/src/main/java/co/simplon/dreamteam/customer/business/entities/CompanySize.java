@@ -21,7 +21,6 @@ public class CompanySize {
     @Column(name = "company_size_id")
     private Long companySizeId;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "company_size_range", nullable = false, length = 50)
     private String range;
 

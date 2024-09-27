@@ -1,7 +1,5 @@
 package co.simplon.dreamteam.customer.business.services;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import co.simplon.dreamteam.customer.business.dtos.CreateCustomer;
@@ -11,6 +9,8 @@ import co.simplon.dreamteam.customer.business.entities.TeamSize;
 import co.simplon.dreamteam.customer.business.repositories.CompanySizeRepository;
 import co.simplon.dreamteam.customer.business.repositories.CustomerRepository;
 import co.simplon.dreamteam.customer.business.repositories.TeamSizeRepository;
+
+import java.util.List;
 
 @Service
 public class CustomerService {

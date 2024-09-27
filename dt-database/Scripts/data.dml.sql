@@ -27,4 +27,4 @@ INSERT INTO t_customers (
  
 SELECT * FROM t_team_sizes;
 SELECT * FROM t_company_sizes;
-SELECT * FROM t_customers;
+SELECT * FROM t_customers c ;

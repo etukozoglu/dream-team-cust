@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import CustomerForm from '../components/CustomerForm.vue'
+import UploadCSV from '../components/UploadCSV.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,8 +9,13 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../components/CustomerForm.vue')
-    }
+      component: CustomerForm,
+    },
+    {
+      path: '/upload',
+      name: 'UploadCSV',
+      component: UploadCSV,
+    },
   ]
 })
 
