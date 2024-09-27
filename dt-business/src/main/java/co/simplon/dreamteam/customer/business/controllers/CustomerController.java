@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.dreamteam.customer.business.dtos.CustomerCreate;
+import co.simplon.dreamteam.customer.business.dtos.CreateCustomer;
 import co.simplon.dreamteam.customer.business.entities.Customer;
 import co.simplon.dreamteam.customer.business.services.CustomerService;
 import jakarta.validation.Valid;
@@ -31,8 +31,8 @@ public class CustomerController {
     }
 
     @PostMapping
-    void createCustomer(@Valid @RequestBody CustomerCreate customerCreate) {
-	service.createCustomer(customerCreate);
+    void createCustomer(@Valid @RequestBody CreateCustomer createCustomer) {
+	service.createCustomer(createCustomer);
     }
 
 }
