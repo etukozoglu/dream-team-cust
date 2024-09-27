@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class FileTypeValidator implements ConstraintValidator<FileType, MultipartFile> {
+public class  FileTypeValidator implements ConstraintValidator<FileType, MultipartFile> {
 
     private static final String CSV_TYPE = "text/csv";
 

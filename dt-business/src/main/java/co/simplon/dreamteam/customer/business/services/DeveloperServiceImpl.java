@@ -1,6 +1,6 @@
 package co.simplon.dreamteam.customer.business.services;
 
-import co.simplon.dreamteam.customer.business.services.DeveloperService;
+
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class DeveloperServiceImpl implements DeveloperService {
 
     @Override
     public void saveDevelopersFromCsv(MultipartFile file) {
-        try (CSVReader reader = new CSVReader(new InputStreamReader(file.getInputStream()), ';')) {
+        try (CSVReader reader = new CSVReader(new InputStreamReader(file.getInputStream()))) {
 
             List<String[]> csvData = reader.readAll();
 
