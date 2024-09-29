@@ -2,7 +2,7 @@ package co.simplon.dreamteam.customer.business.services;
 
 import org.springframework.stereotype.Service;
 
-import co.simplon.dreamteam.customer.business.dtos.CustomerCreate;
+import co.simplon.dreamteam.customer.business.dtos.CreateCustomer;
 import co.simplon.dreamteam.customer.business.entities.CompanySize;
 import co.simplon.dreamteam.customer.business.entities.Customer;
 import co.simplon.dreamteam.customer.business.entities.TeamSize;
@@ -26,25 +26,25 @@ public class CustomerService {
 		this.teamSizeRepo = teamSizeRepo;
 	}
 
-	public CustomerCreate createCustomer(CustomerCreate customerCreate) {
+	public CreateCustomer createCustomer(CreateCustomer createCustomer) {
 
 		// On recherche de TeamSize
-		TeamSize teamSize = teamSizeRepo.findByRange(customerCreate.teamSize())
-				.orElseThrow(() -> new IllegalArgumentException("Invalid team size: " + customerCreate.teamSize()));
+		TeamSize teamSize = teamSizeRepo.findByRange(createCustomer.teamSize())
+				.orElseThrow(() -> new IllegalArgumentException("Invalid team size: " + createCustomer.teamSize()));
 
 		// On recherche de CompanySize
-		CompanySize companySize = companySizeRepo.findByRange(customerCreate.companySize()).orElseThrow(
-				() -> new IllegalArgumentException("Invalid company size: " + customerCreate.companySize()));
+		CompanySize companySize = companySizeRepo.findByRange(createCustomer.companySize()).orElseThrow(
+				() -> new IllegalArgumentException("Invalid company size: " + createCustomer.companySize()));
 
 		// On mappe le DTO vers l'entité
 		Customer customer = new Customer();
-		customer.setFirstName(customerCreate.firstName());
-		customer.setLastName(customerCreate.lastName());
-		customer.setEmail(customerCreate.email());
-		customer.setPhoneNumber(customerCreate.phoneNumber());
-		customer.setRole(customerCreate.role());
-		customer.setCompanyName(customerCreate.companyName());
-		customer.setMessage(customerCreate.message());
+		customer.setFirstName(createCustomer.firstName());
+		customer.setLastName(createCustomer.lastName());
+		customer.setEmail(createCustomer.email());
+		customer.setPhoneNumber(createCustomer.phoneNumber());
+		customer.setRole(createCustomer.role());
+		customer.setCompanyName(createCustomer.companyName());
+		customer.setMessage(createCustomer.message());
 		customer.setTeamSize(teamSize);
 		customer.setCompanySize(companySize);
 
@@ -55,8 +55,8 @@ public class CustomerService {
 		return mapToDto(savedCustomer);
 	}
 
-	private CustomerCreate mapToDto(Customer customer) {
-		return new CustomerCreate(customer.getRequestNumber(), customer.getFirstName(), customer.getLastName(),
+	private CreateCustomer mapToDto(Customer customer) {
+		return new CreateCustomer(customer.getRequestNumber(), customer.getFirstName(), customer.getLastName(),
 				customer.getEmail(), customer.getPhoneNumber(), customer.getRole(), customer.getCompanyName(),
 				customer.getMessage(), customer.getTeamSize().getRange(), customer.getCompanySize().getRange());
 	}
