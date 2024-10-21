@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
-@RequestMapping("developers")
+@RequestMapping("/developers")
 @RestController
+@CrossOrigin("*")
 public class DeveloperController {
     private final DeveloperService developerService;
 
