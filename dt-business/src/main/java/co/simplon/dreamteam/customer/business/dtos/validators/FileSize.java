@@ -10,7 +10,7 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD })
+@Target({ElementType.PARAMETER, ElementType.FIELD })
 @Constraint(validatedBy = FileSizeValidator.class)
 @Documented
 public @interface FileSize {

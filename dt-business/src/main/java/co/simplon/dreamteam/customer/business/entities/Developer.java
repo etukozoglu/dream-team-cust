@@ -10,6 +10,7 @@ public class Developer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_dev")
     private Long id;
 
     @NotBlank(message = "First name is required")

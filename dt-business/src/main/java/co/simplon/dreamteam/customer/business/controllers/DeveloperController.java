@@ -1,8 +1,11 @@
 package co.simplon.dreamteam.customer.business.controllers;
 
 
+
+import co.simplon.dreamteam.customer.business.dtos.UploadDeveloper;
 import co.simplon.dreamteam.customer.business.services.DeveloperService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,13 +20,9 @@ public class DeveloperController {
         this.developerService = developerService;
     }
 
-    @GetMapping("test")
-    public ResponseEntity<String> testEndpoint() {
-        return ResponseEntity.ok("Endpoint is working");
-    }
 
-    @PostMapping("upload")
-    public ResponseEntity<Void> uploadDevelopers(@RequestParam("file") MultipartFile file) {
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> uploadDevelopers(@ModelAttribute @RequestBody UploadDeveloper file) {
         try {
             developerService.saveDevelopersFromCsv(file);
             return ResponseEntity.status(HttpStatus.CREATED).build();

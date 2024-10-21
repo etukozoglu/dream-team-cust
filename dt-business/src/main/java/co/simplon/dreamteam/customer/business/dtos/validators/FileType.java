@@ -12,7 +12,7 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD })
+@Target({ElementType.PARAMETER, ElementType.FIELD })
 @Constraint(validatedBy = FileTypeValidator.class)
 @Documented
 public @interface FileType {

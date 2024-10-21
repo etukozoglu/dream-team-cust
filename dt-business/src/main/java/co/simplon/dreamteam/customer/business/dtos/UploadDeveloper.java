@@ -9,4 +9,5 @@ public record UploadDeveloper(
         @FileSize()
         MultipartFile file
 ) {
+
 }

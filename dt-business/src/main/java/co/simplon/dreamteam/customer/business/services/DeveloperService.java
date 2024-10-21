@@ -1,6 +1,7 @@
 package co.simplon.dreamteam.customer.business.services;
 
 
+import co.simplon.dreamteam.customer.business.dtos.UploadDeveloper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,6 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 public interface DeveloperService {
-    void saveDevelopersFromCsv(MultipartFile file);
+    void saveDevelopersFromCsv(UploadDeveloper file);
 }
 
